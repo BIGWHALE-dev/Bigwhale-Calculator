@@ -25,7 +25,7 @@ Users should be able to:
 - Adjust the color theme based on their preference
 - **Bonus**: Have their initial theme preference checked using `prefers-color-scheme` and have any additional changes saved in the browser
 
-### Screenshot
+### Screenshots
 
 ![](screenshot1.png)
 ![](screenshot2.png)
@@ -49,8 +49,8 @@ Users should be able to:
 
 ### What I learned
 
-```js
 <h1>So Js code I'm proud of</h1>;
+```js
 eval("a + b");
 ```
 

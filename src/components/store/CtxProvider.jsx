@@ -48,8 +48,6 @@ function calcReducer(state, action) {
     if (state.screen === "" && /[/*.+]/.test(action.text))
       return { screen: `0${action.text}` };
 
-    // if (state.screen.test(/\d{3}/) && action.type === 'number') return {screen: }
-
     const display = state.screen + action.text;
     return { screen: display };
   }

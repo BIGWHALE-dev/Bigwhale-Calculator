@@ -1,0 +1,16 @@
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(calc(100% - 3rem), 28rem);
+  margin: auto;
+  height: calc(100dvh - (1rem + 12px));
+}
+
+@media (min-width: 28rem) {
+  .calculator {
+    height: unset;
+    min-height: 100dvh;
+    justify-content: center;
+  }
+}

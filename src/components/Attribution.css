@@ -1,0 +1,10 @@
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  color: var(--screen--text);
+  margin-block: 1rem 0;
+}
+
+.attribution a {
+  color: var(--key-background--clear);
+}

@@ -1,0 +1,53 @@
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--toggle_keypad-background);
+  gap: 1rem 0.8rem;
+}
+
+.operator,
+.number {
+  background-color: var(--key-background--numbers);
+  color: var(--key-text--numbers);
+  filter: drop-shadow(0 4px 0 var(--key-shadow--numbers));
+
+  &:active {
+    background-color: var(--key-background--numbers--active);
+  }
+}
+
+.clear {
+  background-color: var(--key-background--clear);
+  color: var(--key-text--clear);
+  filter: drop-shadow(0 4px 0 var(--key-shadow--clear));
+  font-size: 1.5rem;
+
+  &:active {
+    background-color: var(--key-background--clear--active);
+  }
+
+  &[aria-label="reset"] {
+    grid-column: span 2;
+  }
+}
+
+.equal {
+  font-size: 1.5rem;
+  background-color: var(--key-background--equal--toggle-switch);
+  color: var(--key-text--equal);
+  filter: drop-shadow(0 4px 0 var(--key-shadow--equal--toggle-switch));
+  grid-column: span 2;
+
+  &:active {
+    background-color: var(--key-background--equal--toggle-switch--active);
+  }
+}
+
+@media (min-width: 28rem) {
+  .keypad {
+    gap: 1.2rem 1rem;
+  }
+}

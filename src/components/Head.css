@@ -1,0 +1,82 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 2rem;
+  color: var(--screen--text);
+
+  > p {
+    font-size: 1.5rem;
+  }
+}
+
+.theme-container {
+  display: flex;
+  align-items: center;
+}
+
+small {
+  font-size: 0.75rem;
+  letter-spacing: 0.18px;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+
+.numbers {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.3rem;
+
+  span {
+    font-size: 0.5rem;
+  }
+}
+
+.slider {
+  background-color: var(--toggle_keypad-background);
+  position: relative;
+  width: 4rem;
+  height: 1.5rem;
+  border-radius: 2rem;
+  padding: 0.25rem;
+
+  input {
+    position: absolute;
+    inset-block: 0;
+    width: 31%;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .knob {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--key-background--equal--toggle-switch);
+    position: absolute;
+    transition: all 0.3s ease;
+
+    &:active {
+      background-color: var(--key-background--equal--toggle-switch--active);
+    }
+  }
+}
+
+.theme_1,
+#theme-1,
+#theme-1:checked ~ .theme_1 {
+  left: 0.25rem;
+}
+.theme_2,
+#theme-2,
+#theme-2:checked ~ .theme_2 {
+  transform: translateX(-50%);
+  left: 50%;
+}
+.theme_3,
+#theme-3,
+#theme-3:checked ~ .theme_3 {
+  transform: translateX(-100%);
+  left: calc(100% - 0.25rem);
+}

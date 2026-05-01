@@ -1,0 +1,127 @@
+:root {
+  /* #### Backgrounds */
+
+  --main-background: hsl(222, 26%, 31%);
+  --toggle_keypad-background: hsl(223, 31%, 20%);
+  --screen-background: hsl(224, 36%, 15%);
+
+  /* #### Keys */
+
+  --key-background--clear: hsl(225, 21%, 49%);
+  --key-background--clear--active: hsl(225, 52%, 76%);
+  --key-shadow--clear: hsl(224, 28%, 35%);
+
+  --key-background--equal--toggle-switch: hsl(6, 63%, 50%);
+  --key-background--equal--toggle-switch--active: hsl(14, 100%, 62%);
+  --key-shadow--equal--toggle-switch: hsl(6, 70%, 34%);
+
+  --key-background--numbers: hsl(0, 0%, 90%);
+  --key-background--numbers--active: hsl(0, 0%, 99%);
+  --key-shadow--numbers: hsl(28, 16%, 65%);
+
+  /* #### Text */
+
+  --key-text--numbers: hsl(221, 14%, 31%);
+  --key-text--equal: hsl(0, 100%, 100%);
+  --key-text--clear: hsl(0, 100%, 100%);
+  --screen--text: hsl(0, 100%, 100%);
+
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="2"] {
+  /* #### Backgrounds */
+
+  --main-background: hsl(0, 0%, 90%);
+  --toggle_keypad-background: hsl(0, 5%, 81%);
+  --screen-background: hsl(0, 0%, 93%);
+
+  /* #### Keys */
+
+  --key-background--clear: hsl(185, 42%, 37%);
+  --key-background--clear--active: hsl(189, 57%, 52%);
+  --key-shadow--clear: hsl(185, 58%, 25%);
+
+  --key-background--equal--toggle-switch: hsl(25, 98%, 40%);
+  --key-background--equal--toggle-switch--active: hsl(28, 100%, 56%);
+  --key-shadow--equal--toggle-switch: hsl(25, 99%, 27%);
+
+  --key-background--numbers: hsl(0, 0%, 90%);
+  --key-background--numbers--active: hsl(0, 0%, 99%);
+  --key-shadow--numbers: hsl(35, 11%, 61%);
+
+  /* #### Text */
+
+  --screen--text: hsl(60, 10%, 19%);
+  --key-text--numbers: hsl(60, 10%, 19%);
+  --key-text--equal: hsl(0, 100%, 100%);
+  --key-text--clear: hsl(0, 100%, 100%);
+}
+
+[data-theme="3"] {
+  /* #### Backgrounds */
+
+  --main-background: hsl(268, 75%, 9%);
+  --toggle_keypad-background: hsl(268, 71%, 12%);
+  --screen-background: hsl(268, 71%, 12%);
+
+  /* #### Keys */
+
+  --key-background--clear: hsl(281, 89%, 26%);
+  --key-background--clear--active: hsl(314, 58%, 48%);
+  --key-shadow--clear: hsl(285, 91%, 52%);
+
+  --key-background--equal--toggle-switch: hsl(176, 100%, 44%);
+  --key-background--equal--toggle-switch--active: hsl(180, 100%, 70%);
+  --key-shadow--equal--toggle-switch: hsl(177, 92%, 70%);
+
+  --key-background--numbers: hsl(268, 47%, 21%);
+  --key-background--numbers--active: hsl(287, 51%, 42%);
+  --key-shadow--numbers: hsl(290, 70%, 36%);
+
+  /* #### Text */
+
+  --screen--text: hsl(52, 100%, 62%);
+  --key-text--numbers: hsl(52, 100%, 62%);
+  --key-text--equal: hsl(198, 20%, 13%);
+  --key-text--clear: hsl(0, 100%, 100%);
+}
+
+/* ========= Reset =========== */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+body {
+  font-size: 2rem;
+}
+
+image,
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+select {
+  font: inherit;
+  border: none;
+  margin: 0;
+}

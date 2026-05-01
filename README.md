@@ -49,7 +49,7 @@ Users should be able to:
 
 ### What I learned
 
-<h1>So Js code I'm proud of</h1>
+<h1>Js code I'm proud of</h1>
 
 ```js
 eval("a + b");

@@ -1,7 +1,8 @@
-import { useContext } from "react";
 import "./Keypad.css";
 import Btn from "./UI/Button";
-import CalcContext from "./store/Calc-context";
+import { evaluate } from "mathjs";
+
+import { commaAdder2, dotInspector } from "./controller/effectHandler";
 
 const keyTexts = [
   { text: "7", type: "number", action: "seven" },
@@ -24,10 +25,55 @@ const keyTexts = [
   { text: "=", type: "equal", action: "equals" },
 ];
 
-function Keypad() {
-  const calcCtx = useContext(CalcContext);
+function Keypad(props) {
   const btnClickHandler = (type, text) => {
-    calcCtx.btnClick(type, text);
+    if (type === "clear") {
+      if (text === "RESET") props.writeOnScreen("");
+
+      if (text === "DEL") props.writeOnScreen((prev) => prev.slice(0, -1));
+    }
+
+    if (type === "number" || type === "operator") {
+      props.answer(false);
+      const prevScreen = () => props.writeOnScreen((prev) => prev);
+
+      // To make sure DOT only exist between numbers
+      if (dotInspector(props.currDisplay) && text === ".") return prevScreen();
+
+      // preventing double or more different operators from being together
+      if (/[*/+-.]$/.test(props.currDisplay) && /[/*.+]/.test(text))
+        return prevScreen();
+
+      // preventing minus from being more than 2 on a row
+      if (/[-]$/.test(props.currDisplay) && /[-]/.test(text))
+        return prevScreen();
+
+      // preventing calculations from begining with invalid operators
+      if (props.currDisplay === "" && /[/*.+]/.test(text))
+        return props.writeOnScreen(`0${text}`);
+
+      props.writeOnScreen((prev) => {
+        const expression = `${prev}${text}`;
+        return expression;
+      });
+      //
+      commaAdder2(text, type);
+    }
+
+    if (type === "equal" && props.currDisplay !== "") {
+      let ansCalc;
+      const calcExpression = props.currDisplay.replaceAll(",", "");
+
+      if (/[-+/*]$/.test(props.currDisplay)) {
+        const validCalc = calcExpression.slice(0, -1);
+        ansCalc = evaluate(validCalc);
+      } else {
+        ansCalc = evaluate(calcExpression);
+      }
+
+      props.writeOnScreen(`${ansCalc.toLocaleString("en-US")}`);
+      props.answer(true);
+    }
   };
 
   return (

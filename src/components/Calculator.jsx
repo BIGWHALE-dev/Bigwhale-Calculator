@@ -5,7 +5,7 @@ import Keypad from "./Keypad";
 import { useState } from "react";
 
 function Calculator() {
-  const [screen, setScreen] = useState("");
+  const [screen, setScreen] = useState([""]);
   const [answer, setAnswer] = useState(false);
 
   return (

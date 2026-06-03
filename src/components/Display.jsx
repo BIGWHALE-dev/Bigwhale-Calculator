@@ -8,7 +8,12 @@ function Display(props) {
         id="screen"
         readOnly
         className={props.answer ? "total" : ""}
-        value={props.display}
+        value={props.display
+          .map((el) => {
+            if (!isNaN(+el)) return Intl.NumberFormat("en-us").format(el);
+            else return el;
+          })
+          .join(" ")}
       />
     </div>
   );

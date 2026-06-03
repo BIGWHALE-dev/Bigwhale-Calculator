@@ -1,8 +1,8 @@
 import "./Keypad.css";
 import Btn from "./UI/Button";
-import { evaluate } from "mathjs";
+import { dotInspector } from "./controller/effectHandler";
 
-import { commaAdder2, dotInspector } from "./controller/effectHandler";
+import { evaluate } from "mathjs";
 
 const keyTexts = [
   { text: "7", type: "number", action: "seven" },
@@ -28,50 +28,66 @@ const keyTexts = [
 function Keypad(props) {
   const btnClickHandler = (type, text) => {
     if (type === "clear") {
-      if (text === "RESET") props.writeOnScreen("");
+      if (text === "RESET") props.writeOnScreen([""]);
 
-      if (text === "DEL") props.writeOnScreen((prev) => prev.slice(0, -1));
+      if (text === "DEL")
+        props.writeOnScreen((prev) => [prev.join("").slice(0, -1)]);
     }
 
     if (type === "number" || type === "operator") {
       props.answer(false);
       const prevScreen = () => props.writeOnScreen((prev) => prev);
 
-      // To make sure DOT only exist between numbers
+      // To make sure only 1 DOT exist between numbers
       if (dotInspector(props.currDisplay) && text === ".") return prevScreen();
 
-      // preventing double or more different operators from being together
-      if (/[*/+-.]$/.test(props.currDisplay) && /[/*.+]/.test(text))
+      // preventing operators and DOT from being together
+      if (/[*/+-.]$/.test(props.currDisplay.join("")) && /[/*.+]/.test(text))
         return prevScreen();
 
       // preventing minus from being more than 2 on a row
-      if (/[-]$/.test(props.currDisplay) && /[-]/.test(text))
+      if (/[-]$/.test(props.currDisplay.join("")) && /[-]/.test(text))
         return prevScreen();
 
       // preventing calculations from begining with invalid operators
-      if (props.currDisplay === "" && /[/*.+]/.test(text))
-        return props.writeOnScreen(`0${text}`);
+      if (
+        props.currDisplay.at(-1) === "" &&
+        props.currDisplay.length === 1 &&
+        /[/*.+]/.test(text)
+      )
+        return prevScreen();
 
       props.writeOnScreen((prev) => {
-        const expression = `${prev}${text}`;
-        return expression;
+        const exprArray = [...prev];
+        if (type === "number") {
+          exprArray[exprArray.length - 1] += text;
+        }
+
+        if (type === "operator") {
+          if (
+            props.currDisplay.at(-1) === "" &&
+            props.currDisplay.length === 1 &&
+            /[-]/.test(text)
+          ) {
+            exprArray.pop();
+          }
+          exprArray.push(text, "");
+        }
+        return exprArray;
       });
-      //
-      commaAdder2(text, type);
     }
 
     if (type === "equal" && props.currDisplay !== "") {
       let ansCalc;
-      const calcExpression = props.currDisplay.replaceAll(",", "");
 
-      if (/[-+/*]$/.test(props.currDisplay)) {
-        const validCalc = calcExpression.slice(0, -1);
-        ansCalc = evaluate(validCalc);
+      if (props.currDisplay.at(-1) === "") {
+        const validCalc = props.currDisplay.slice(0, -2);
+        ansCalc = evaluate(validCalc.join(""));
       } else {
-        ansCalc = evaluate(calcExpression);
+        ansCalc = evaluate(props.currDisplay.join(""));
       }
 
-      props.writeOnScreen(`${ansCalc.toLocaleString("en-US")}`);
+      props.writeOnScreen([ansCalc]);
       props.answer(true);
     }
   };

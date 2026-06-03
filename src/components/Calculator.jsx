@@ -14,7 +14,7 @@ function Calculator() {
       <Display display={screen} answer={answer} />
       <Keypad
         writeOnScreen={setScreen}
-        answer={setAnswer}
+        setAnswer={setAnswer}
         currDisplay={screen}
       />
     </section>

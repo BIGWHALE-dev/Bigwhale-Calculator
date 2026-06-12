@@ -10,8 +10,12 @@ function Display(props) {
         className={props.answer ? "total" : ""}
         value={props.display
           .map((el) => {
-            if (!isNaN(+el)) return Intl.NumberFormat("en-us").format(el);
-            else return el;
+            if (!isNaN(+el)) {
+              if (el.endsWith(".")) {
+                return `${Intl.NumberFormat("en-us").format(el.slice(0, -1))}.`;
+              }
+              return Intl.NumberFormat("en-us").format(el);
+            } else return el;
           })
           .join(" ")}
       />
